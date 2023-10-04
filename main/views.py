@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponseNotFound
 from main.forms import ProductForm
 from django.urls import reverse
 from main.models import Product
@@ -83,6 +83,7 @@ def delete_product(request, id):
 
 def get_product_json(request):
     product_item = Product.objects.all()
+    print(product_item) 
     return HttpResponse(serializers.serialize('json', product_item))
 
 def show_xml(request):
